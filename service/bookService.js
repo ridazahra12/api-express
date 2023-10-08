@@ -1,24 +1,25 @@
 let Books = [
-  { id: 1, title: "Book 1", author: "Author 1" },
-  { id: 2, title: "Book 2", author: "Author 2" },
+  { id: 1, title: "To Kill a Mockingbird", author: "Harper Lee" },
+  { id: 2, title: "1984", author: "George Orwell" },
 ];
+
 module.exports = {
-  getBooks: (data) => {
+  getBooks: () => {
     return Books;
   },
   updateBook: (id, data) => {
-    const course = Courses.find((c) => c.id === parseInt(id));
+    const book = Books.find((b) => b.id === parseInt(id));
     if (!book) {
-      return "The book with the given ID was not found."; //404
+      return "The book with the given ID was not found.";
     } else {
-      course.title = data.title;
+      book.title = data.title;
       return book;
     }
   },
   deleteBook: (id) => {
-    const book = book.find((c) => c.id === parseInt(id));
+    const book = Books.find((b) => b.id === parseInt(id));
     if (!book) {
-      return "The book with the given ID was not found."; //404
+      return "The book with the given ID was not found.";
     } else {
       const index = Books.indexOf(book);
       Books.splice(index, 1);
@@ -29,6 +30,7 @@ module.exports = {
     const book = {
       id: Books.length + 1,
       title: data.title,
+      author: data.author,
     };
     Books.push(book);
     return book;
