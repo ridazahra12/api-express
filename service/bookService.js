@@ -1,6 +1,14 @@
 let Books = [
   { id: 1, title: "To Kill a Mockingbird", author: "Harper Lee" },
   { id: 2, title: "1984", author: "George Orwell" },
+  {
+    id: 3,
+    title: "Harry Potter and the Sorcerer's Stone",
+    author: "J.K. Rowling",
+  },
+  { id: 4, title: " Pride and Prejudice", author: "Jane Austen" },
+  { id: 5, title: "The Great Gatsby", author: "F. Scott Fitzgerald" },
+  { id: 6, title: "Peer-e-Kamil", author: "Umera Ahmed" },
 ];
 
 module.exports = {
