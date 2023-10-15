@@ -1,3 +1,6 @@
 module.exports = {
-  bookController: require("./books/booksController"),
+  userController: require("./user/userController"),
+  teachercontroller: require("./user/teacherController"),
+  studentController: require("./user/studentController"),
+  courseController: require("./user/courseController"),
 };
