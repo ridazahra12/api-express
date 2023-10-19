@@ -12,8 +12,7 @@ const teacherCourse = sequelize.define(
     },
   },
   {
-    //these are global properties
-    sequelize, //instance
+    sequelize,
     modelName: "teacherCourse",
   }
 );

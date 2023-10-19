@@ -4,10 +4,6 @@ module.exports = {
     const result = await models.user.findAll();
     return result;
   },
-  getUserById: async (id) => {
-    const result = await models.user.findByPk(id);
-    return result;
-  },
 
   createUser: async (userData) => {
     const result = await models.user.create(userData);
