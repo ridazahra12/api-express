@@ -4,9 +4,19 @@ module.exports = {
     const result = await models.student.findAll();
     return result;
   },
-  createStudent: async (data) => {
-    console.log(data);
-    const result = await models.student.create(data);
+
+  createStudent: async (studentData) => {
+    const result = await models.student.create(studentData);
+    return result;
+  },
+
+  updateStudent: async (id, updatedData) => {
+    const result = await models.student.update(updatedData, { where: { id } });
+    return result;
+  },
+
+  deleteStudent: async (id) => {
+    const result = await models.student.destroy({ where: { id } });
     return result;
   },
 };

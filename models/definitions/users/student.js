@@ -25,4 +25,5 @@ const student = sequelize.define(
   },
   { timestamps: true, paranoid: true, sequelize, modelName: "student" }
 );
+
 module.exports = student;

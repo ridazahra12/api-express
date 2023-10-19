@@ -1,34 +1,38 @@
 const userController = require("./userController");
-const courseController = require("./courseController");
 const studentService = require("../../service/studentService");
+
 module.exports = {
   getStudents: async (req, res) => {
-    const data = await userService.getStudents();
+    const data = await studentService.getStudents();
     res.send(data);
   },
+  // Extracting relevant data from the request body
   createStudent: async (req, res) => {
     const { firstName, lasttName, email, phoneNumber } = req.body;
     const { semester, department, rollNumber } = req.body;
-    const { code } = req.body;
 
-    const user = await userController.createUser({
-      firstName,
-      lasttName,
-      email,
-      phoneNumber,
-    });
-    const course = await courseController.createCourse({
-      code,
+    const user = await userController.createUserHelper({
+      firstName: firstName,
+      lasttName: lasttName,
+      email: email,
+      phoneNumber: phoneNumber,
     });
 
-    const data = await studentService.createStudent({
-      semester,
-      department,
-      rollNumber,
-      id: user.id,
-      id: course.id,
+    const student = await studentService.createStudent({
+      semester: semester,
+      department: department,
+      rollNumber: rollNumber,
+      userID: user.id, // Associate the student with the user
     });
 
-    res.send(data);
+    res.send(student);
+  },
+  updateStudent: async (req, res) => {
+    const result = await studentService.updateStudent(req.params.id, req.body);
+    res.send(result);
+  },
+  deleteStudent: async (req, res) => {
+    const deleted = await studentService.deleteStudent(req.params.id);
+    res.send(deleted);
   },
 };

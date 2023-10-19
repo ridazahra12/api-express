@@ -1,41 +1,45 @@
-let sequelize = require("../../common/dbConnection");
+let sequelize = require("../../common/dbConnection.js");
 let user = require("./users/user");
 let student = require("./users/student");
+let courses = require("./users/course");
 let teacher = require("./users/teacher");
-const Course = require("./users/course");
+
 user.hasOne(student, {
   onDelete: "CASCADE",
-  foreignKey: { name: "userId", allowNull: false, unique: true },
+  foreignKey: { name: "userID", allowNull: false, unique: true },
 });
 student.belongsTo(user, {
   onDelete: "CASCADE",
-  foreignKey: { name: "userId", allowNull: false, unique: true },
+  foreignKey: { name: "userID", allowNull: false, unique: true },
 });
 user.hasOne(teacher, {
   onDelete: "CASCADE",
-  foreignKey: { name: "userId", allowNull: false, unique: true },
+  foreignKey: { name: "userID", allowNull: false, unique: true },
 });
 teacher.belongsTo(user, {
   onDelete: "CASCADE",
-  foreignKey: { name: "userId", allowNull: false, unique: true },
+  foreignKey: { name: "userID", allowNull: false, unique: true },
 });
-student.belongsToMany(Course, {
-  through: "StudentCourse",
-  foreignKey: "courseId",
+student.belongsToMany(courses, {
+  onDELETE: "CASCADE",
+  through: "studentCourse",
+  foreignKey: { name: "studentID", allownull: false },
 });
-Course.belongsTo(student, {
-  through: "StudentCourse",
-  foreignKey: "courseId",
+courses.belongsToMany(student, {
+  onDELETE: "CASCADE",
+  through: "studentCourse",
+  foreignKey: { name: "courseID", allownull: false },
 });
-teacher.belongsToMany(Course, {
-  through: "CourseTeacher",
-  foreignKey: "courseId",
+teacher.belongsToMany(courses, {
+  through: "teacherCourse",
+  onUpdate: "CASCADE",
+  foreignKey: { name: "teacherID", allownull: false },
 });
-Course.belongsToMany(teacher, {
-  through: "CourseTeacher",
-  foreignKey: "courseId",
+courses.belongsToMany(teacher, {
+  onDELETE: "CASCADE",
+  through: "teacherCourse",
+  foreignKey: { name: "courseID", allownull: false },
 });
-
 const models = sequelize.models;
 console.log(models);
 const db = {};

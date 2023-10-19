@@ -4,9 +4,18 @@ module.exports = {
     const result = await models.teacher.findAll();
     return result;
   },
-  createTeacher: async (data) => {
-    console.log(data);
-    const result = await models.teacher.create(data);
+  createTeacher: async (teacherData) => {
+    const result = await models.teacher.create(teacherData);
+    return result;
+  },
+
+  updateTeacher: async (id, updatedData) => {
+    const result = await models.teacher.update(updatedData, { where: { id } });
+    return result;
+  },
+
+  deleteTeacher: async (id) => {
+    const result = await models.teacher.destroy({ where: { id } });
     return result;
   },
 };

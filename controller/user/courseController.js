@@ -1,4 +1,3 @@
-const userController = require("./userController");
 const courseService = require("../../service/courseService");
 module.exports = {
   getCourses: async (req, res) => {
@@ -6,21 +5,16 @@ module.exports = {
     res.send(data);
   },
   createCourse: async (req, res) => {
-    const { firstName, lasttName, email, phoneNumber } = req.body;
-    const { code } = req.body;
+    const students = await courseService.createCourse(req.body);
+    res.send(students);
+  },
+  updateCourse: async (req, res) => {
+    const result = await courseService.updateCourse(req.params.id, req.body);
+    res.send(result);
+  },
 
-    const user = await userController.createUser({
-      firstName,
-      lasttName,
-      email,
-      phoneNumber,
-    });
-
-    const data = await courseService.createCourse({
-      code,
-      id: user.id,
-    });
-
-    res.send(data);
+  deleteCourse: async (req, res) => {
+    const deleted = await courseService.deleteCourse(req.params.id);
+    res.send(deleted);
   },
 };

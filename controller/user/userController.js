@@ -6,11 +6,19 @@ module.exports = {
   },
   createUser: async (req, res) => {
     console.log(req.body);
-    const data = await userService.createUsers(req.body);
+    const data = await userService.createUser(req.body);
     res.send(data);
   },
   createUserHelper: async (data) => {
-    const userdata = await userService.createUsers(data);
+    const userdata = await userService.createUser(data);
     return userdata;
+  },
+  updateUser: async (req, res) => {
+    const data = await userService.updateUser(req.params.id, req.body);
+    res.send(data);
+  },
+  deleteUser: async (req, res) => {
+    const data = await userService.deleteUser(req.params.id);
+    res.send(data);
   },
 };
