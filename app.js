@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/users", usersRouter);
 app.use("/student", studentRouter);
-app.use("/teacher", teacherRouter);
+app.use("/teachers", teacherRouter);
 app.use("/course", courseRouter);
 app.use("/teacherCourse", teacherCourse);
 app.use("/studentCourse", studentCourse);
